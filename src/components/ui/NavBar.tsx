@@ -1,21 +1,18 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 
 const NavBar = () => {
+  const history = useHistory();
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-      <Link className="navbar-brand" to="/home">
+      <Link className="navbar-brand" to="/">
         APP
       </Link>
       <div className="collapse navbar-collapse" id="navbarText">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <NavLink
-              exact
-              activeClassName="active"
-              className="nav-link"
-              to="/home"
-            >
+            <NavLink exact activeClassName="active" className="nav-link" to="/">
               Home
             </NavLink>
           </li>
@@ -24,7 +21,7 @@ const NavBar = () => {
               exact
               activeClassName="active"
               className="nav-link"
-              to="/budgeting"
+              to="/heroes"
             >
               Heroes
             </NavLink>
@@ -32,7 +29,11 @@ const NavBar = () => {
         </ul>
       </div>
       <span className="navbar-text text-info">Pedro</span>
-      <button type="button" className="btn text-secondary">
+      <button
+        onClick={() => history.replace('/login')}
+        type="button"
+        className="btn text-secondary"
+      >
         Logout
       </button>
     </nav>

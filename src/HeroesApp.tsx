@@ -1,9 +1,10 @@
 import React from 'react';
+import AppRouter from './routers/AppRouter';
 
 const HeroesApp = () => {
   return (
     <div>
-      <h1>Api of heroes with gifs</h1>
+      <AppRouter />
     </div>
   );
 };

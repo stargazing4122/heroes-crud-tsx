@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HerosScreen = () => {
+const HeroScreen = () => {
   return (
     <div>
       <h1>HeroScreen!</h1>
@@ -8,4 +8,4 @@ const HerosScreen = () => {
   );
 };
 
-export default HerosScreen;
+export default HeroScreen;
