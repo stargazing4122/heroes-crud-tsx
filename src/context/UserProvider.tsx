@@ -8,13 +8,13 @@ interface UserProviderProps {
 }
 
 const UserProvider = ({ children }: UserProviderProps) => {
-  const [stateUser, dispatchUser] = useReducer(userReducer, {}, initUser);
+  const [userState, userDispatch] = useReducer(userReducer, {}, initUser);
 
   useEffect(() => {
-    localStorage.setItem('user-login-crud', JSON.stringify(stateUser));
-  }, [stateUser]);
+    localStorage.setItem('user-login-crud', JSON.stringify(userState));
+  }, [userState]);
   return (
-    <UserContext.Provider value={{ user: stateUser }}>
+    <UserContext.Provider value={{ userState, userDispatch }}>
       {children}
     </UserContext.Provider>
   );
