@@ -1,0 +1,24 @@
+{
+  "heroes": [
+    {
+      "id": 1,
+      "hero": "Spiderman",
+      "publisher": "Marvel"
+    },
+    {
+      "id": 2,
+      "hero": "Batman",
+      "publisher": "DC"
+    },
+    {
+      "id": 3,
+      "hero": "Iron Man",
+      "publisher": "Marvel"
+    },
+    {
+      "id": 4,
+      "hero": "Superman",
+      "publisher": "DC"
+    }
+  ]
+}
