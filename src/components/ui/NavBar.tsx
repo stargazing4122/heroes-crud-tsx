@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, NavLink, useHistory } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 
 const NavBar = () => {
   const history = useHistory();
+
+  const { user } = useContext(UserContext);
 
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -28,7 +31,7 @@ const NavBar = () => {
           </li>
         </ul>
       </div>
-      <span className="navbar-text text-info">Pedro</span>
+      <span className="navbar-text text-info">{user.name}</span>
       <button
         onClick={() => history.replace('/login')}
         type="button"
