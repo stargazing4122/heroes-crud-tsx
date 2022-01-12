@@ -1,6 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { helpHttp, Options } from '../../helpers/helptHttp';
+import { Hero } from '../../interfaces/interfaces';
+import TableItem from './TableItem';
 
 const TableHeroes = () => {
+  const url = 'http://localhost:5555/heroes';
+
+  const [heroesList, setHeroesList] = useState<Hero[]>([]);
+
+  //METHOD GET
+  const getHeroes = async () => {
+    const options: Options = {
+      headers: {},
+    };
+    try {
+      const json = await helpHttp().get(url, options);
+      setHeroesList(json);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getHeroes();
+  }, []);
+
+  //METHOD DELETE
+  const deleteHero = async (id: string) => {
+    const options: Options = {
+      headers: {},
+    };
+    try {
+      await helpHttp().del(url, id, options);
+      getHeroes();
+      getHeroes();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <table className="table table-dark">
@@ -14,40 +52,14 @@ const TableHeroes = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>23442</td>
-            <td>Wolverine</td>
-            <td>Marvel</td>
-            <td>
-              <button type="button" className="btn btn-outline-info me-3">
-                Ver+
-              </button>
-              <button type="button" className="btn btn-outline-warning me-3">
-                Edit
-              </button>
-              <button type="button" className="btn btn-outline-danger">
-                Delete
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>345345</td>
-            <td>Wonder Woman</td>
-            <td>DC</td>
-            <td>
-              <button type="button" className="btn btn-outline-info me-3">
-                Ver+
-              </button>
-              <button type="button" className="btn btn-outline-warning me-3">
-                Edit
-              </button>
-              <button type="button" className="btn btn-outline-danger">
-                Delete
-              </button>
-            </td>
-          </tr>
+          {heroesList.map((hero, index) => (
+            <TableItem
+              key={hero.id}
+              index={index}
+              hero={hero}
+              deleteHero={deleteHero}
+            />
+          ))}
         </tbody>
       </table>
     </div>

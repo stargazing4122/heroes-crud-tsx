@@ -1,4 +1,4 @@
-interface Options {
+export interface Options {
   method?: string;
   headers: {};
   body?: string;
@@ -50,13 +50,13 @@ export const helpHttp = () => {
     return customFetch(url, options);
   };
 
-  const put = (url: string, id: number, options: Options) => {
+  const put = (url: string, id: string, options: Options) => {
     let endPoint = `${url}/${id}`;
     options.method = 'PUT';
     return customFetch(endPoint, options);
   };
 
-  const del = (url: string, id: number, options: Options) => {
+  const del = (url: string, id: string, options: Options) => {
     let endPoint = `${url}/${id}`;
     options.method = 'DELETE';
     return customFetch(endPoint, options);
