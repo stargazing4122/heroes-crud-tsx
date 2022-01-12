@@ -10,13 +10,15 @@ const DashboardRouter = () => {
   return (
     <>
       <NavBar />
-      <Switch>
-        <Route exact path="/" component={HomeScreen} />
-        <Route exact path="/heroes" component={HeroesScreen} />
-        <Route exact path="/hero/:name" component={HeroScreen} />
+      <div className="container">
+        <Switch>
+          <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/heroes" component={HeroesScreen} />
+          <Route exact path="/hero/:name" component={HeroScreen} />
 
-        <Redirect to="/" />
-      </Switch>
+          <Redirect to="/" />
+        </Switch>
+      </div>
     </>
   );
 };
