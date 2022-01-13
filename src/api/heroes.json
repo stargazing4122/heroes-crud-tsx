@@ -1,24 +1,24 @@
 {
   "heroes": [
     {
-      "id": 1,
+      "id": "4555",
       "hero": "Spiderman",
-      "publisher": "Marvel"
+      "publisher": "marvel"
     },
     {
-      "id": 2,
+      "id": "1754",
       "hero": "Batman",
-      "publisher": "DC"
+      "publisher": "dc"
     },
     {
-      "id": 3,
+      "id": "7994",
       "hero": "Iron Man",
-      "publisher": "Marvel"
+      "publisher": "marvel"
     },
     {
-      "id": 4,
+      "id": "4162",
       "hero": "Superman",
-      "publisher": "DC"
+      "publisher": "dc"
     }
   ]
 }

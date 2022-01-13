@@ -1,43 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { helpHttp, Options } from '../../helpers/helptHttp';
-import { Hero } from '../../interfaces/interfaces';
+import React, { useContext, useEffect, useState } from 'react';
 import TableItem from './TableItem';
+import { UserContext } from '../../context/UserContext';
+import FormEditMode from './FormEditMode';
+import { Hero } from '../../interfaces/interfaces';
+
+export interface EditMode {
+  state: boolean;
+  superhero: Hero;
+}
 
 const TableHeroes = () => {
-  const url = 'http://localhost:5555/heroes';
+  const { heroesList, deleteHero } = useContext(UserContext);
+  useEffect(() => {}, [heroesList]);
+  // getHeroes(); ciclo infinito
 
-  const [heroesList, setHeroesList] = useState<Hero[]>([]);
-
-  //METHOD GET
-  const getHeroes = async () => {
-    const options: Options = {
-      headers: {},
-    };
-    try {
-      const json = await helpHttp().get(url, options);
-      setHeroesList(json);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getHeroes();
-  }, []);
-
-  //METHOD DELETE
-  const deleteHero = async (id: string) => {
-    const options: Options = {
-      headers: {},
-    };
-    try {
-      await helpHttp().del(url, id, options);
-      getHeroes();
-      getHeroes();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const [editMode, setEditMode] = useState<EditMode>({
+    state: false,
+    superhero: {
+      id: '',
+      hero: '',
+      publisher: '',
+    },
+  });
 
   return (
     <div>
@@ -51,17 +35,29 @@ const TableHeroes = () => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
-          {heroesList.map((hero, index) => (
-            <TableItem
-              key={hero.id}
-              index={index}
-              hero={hero}
-              deleteHero={deleteHero}
-            />
-          ))}
-        </tbody>
+        {heroesList.length === 0 ? (
+          <tbody>
+            <tr>
+              <td colSpan={3}>Sin data</td>
+            </tr>
+          </tbody>
+        ) : (
+          <tbody>
+            {heroesList.map((hero, index) => (
+              <TableItem
+                key={hero.id}
+                index={index}
+                hero={hero}
+                deleteHero={deleteHero}
+                setEditMode={setEditMode}
+              />
+            ))}
+          </tbody>
+        )}
       </table>
+      {editMode.state && (
+        <FormEditMode editMode={editMode} setEditMode={setEditMode} />
+      )}
     </div>
   );
 };

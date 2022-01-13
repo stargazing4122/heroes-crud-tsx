@@ -18,6 +18,7 @@ const useForm = <T extends Object>(initialState: T) => {
     formValues,
     handleChange,
     resetForm,
+    setFormValues,
   };
 };
 

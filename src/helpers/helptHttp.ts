@@ -1,7 +1,7 @@
 export interface Options {
   method?: string;
-  headers: {};
-  body?: string;
+  headers?: {};
+  body?: any;
   signal?: AbortSignal;
 }
 
@@ -24,6 +24,7 @@ export const helpHttp = () => {
     const abortController = new AbortController();
     options.signal = abortController.signal;
 
+    console.log(options);
     setTimeout(() => abortController.abort(), 3000);
 
     return fetch(endPoint, options)
